@@ -62,7 +62,7 @@ jobs:
 
       # Generate PDF from main resume.md
       - name: Generate PDF from Markdown
-        run: md-to-pdf resume.md --output-file resume.pdf --config-file styles/md2pdf.json
+        run: md-to-pdf resume.md --config-file styles/md2pdf.json --out resume.pdf
 
       # Optional JSON -> MD -> PDF, only if resume.json exists
       - name: Generate PDF from JSON (optional)
@@ -96,7 +96,7 @@ jobs:
       # Convert JSON markdown to PDF
       - name: Convert JSON markdown to PDF
         if: hashFiles('resume.json') != ''
-        run: md-to-pdf resume-from-json.md --output-file resume-from-json.pdf --config-file styles/md2pdf.json
+        run: md-to-pdf resume-from-json.md --config-file styles/md2pdf.json --out resume-from-json.pdf
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
