@@ -1,4 +1,4 @@
-# 🚀 Professional Resume - Built with Code
+# Professional Resume - Built with Code
 
 > **Modern, automated, and interactive resume that showcases both technical skills and professional experience**
 
