@@ -56,15 +56,13 @@ jobs:
         with:
           node-version: '20'
 
-      # Install pandoc
-      - name: Install pandoc
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y pandoc texlive-xetex
+      # Install md-to-pdf globally
+      - name: Install md-to-pdf
+        run: npm install -g md-to-pdf
 
       # Generate PDF from main resume.md
       - name: Generate PDF from Markdown
-        run: pandoc resume.md -f gfm -o resume.pdf --pdf-engine=xelatex
+        run: md-to-pdf resume.md --config-file styles/md2pdf.json
 
       # Optional JSON -> MD -> PDF, only if resume.json exists
       - name: Generate PDF from JSON (optional)
@@ -98,7 +96,7 @@ jobs:
       # Convert JSON markdown to PDF
       - name: Convert JSON markdown to PDF
         if: hashFiles('resume.json') != ''
-        run: pandoc resume-from-json.md -f gfm -o resume-from-json.pdf --pdf-engine=xelatex
+        run: md-to-pdf resume-from-json.md --config-file styles/md2pdf.json
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
