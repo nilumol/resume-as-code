@@ -8,14 +8,14 @@ This repo contains my resume in Markdown format, with an automated workflow to g
 
 ## ⚙️ How It Works
 - Resume is stored as `resume.md`
-- GitHub Actions + Pandoc convert it to PDF
+- GitHub Actions + md-to-pdf convert it to PDF
 - Tagged releases attach the generated PDF automatically
 
 ## 🛠 Tech Used
 - Markdown for easy editing
-- Pandoc for document conversion
+- md-to-pdf for document conversion
 - GitHub Actions for automation
 
 ---
 
-> *Last updated: YYYY-MM-DD*
+> *Last updated: 2025-08-15*
