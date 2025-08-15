@@ -1,0 +1,39 @@
+{
+  "name": "resume-as-code",
+  "version": "1.0.0",
+  "description": "Professional resume built with code - automated PDF generation, validation, and deployment",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-json.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:md": "markdownlint \"**/*.md\"",
+    "test": "npm run validate && npm run format:check && npm run lint:md",
+
+    "build:pdf": "pandoc resume.md -f gfm -o resume.pdf",
+    "build:html": "node scripts/build-html-from-json.cjs",
+    "build": "npm run build:pdf && npm run build:html",
+    "clean": "rm -f resume.pdf resume.html resume-from-json.md",
+    "preview": "open resume.html || xdg-open resume.html || start resume.html"
+  },
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "markdownlint-cli": "^0.35.0",
+    "prettier": "^3.3.0"
+  },
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/resume-as-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/resume-as-code/issues"
+  },
+  "homepage": "https://github.com/yourusername/resume-as-code#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

@@ -1,0 +1,199 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Page setup
+\geometry{margin=0.75in, top=0.75in, bottom=0.75in}
+\pagestyle{fancy}
+
+% Header and footer
+\fancyhf{}
+\fancyhead[L]{\Large\textbf{$title$}}
+\fancyhead[R]{\large Professional Resume}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Title formatting
+\titleformat{\section}
+  {\Large\bfseries\color{blue!70!black}}
+  {}{0em}{}[\titlerule]
+  
+\titleformat{\subsection}
+  {\large\bfseries\color{blue!50!black}}
+  {}{0em}{}
+
+% Hyperlink colors
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    filecolor=blue!70!black,
+    urlcolor=blue!70!black,
+    citecolor=blue!70!black
+}
+
+% List spacing
+\setlist[itemize]{leftmargin=0.5in}
+\setlist[enumerate]{leftmargin=0.5in}
+
+% Document begin
+\begin{document}
+
+% Title section
+\begin{center}
+\Huge\textbf{$title$} \\[0.5em]
+\Large\textit{Software Engineer \& Technology Professional} \\[1em]
+\end{center}
+
+% Contact information
+\begin{center}
+\begin{tabular}{llll}
+Email: your.email@example.com & 
+Phone: (555) 123-4567 & 
+Location: City, State & 
+LinkedIn: linkedin.com/in/yourprofile \\
+GitHub: github.com/yourusername & 
+Website: yourwebsite.com
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+% Professional Summary
+\section{Professional Summary}
+Experienced software engineer with a passion for creating innovative solutions and driving technological advancement. Proven track record of delivering high-quality software products, leading development teams, and implementing best practices. Strong expertise in modern web technologies, cloud architecture, and agile methodologies.
+
+% Core Competencies
+\section{Core Competencies}
+
+\subsection{Programming Languages}
+\begin{itemize}
+\item \textbf{JavaScript/TypeScript} - Expert level, modern ES6+ features
+\item \textbf{Python} - Advanced, data science \& automation
+\item \textbf{Java} - Professional experience, enterprise applications
+\item \textbf{SQL} - Complex queries, database optimization
+\item \textbf{HTML/CSS} - Semantic markup, responsive design
+\end{itemize}
+
+\subsection{Technologies \& Frameworks}
+\begin{itemize}
+\item \textbf{Frontend:} React, Vue.js, Angular, Next.js
+\item \textbf{Backend:} Node.js, Express, Django, Spring Boot
+\item \textbf{Cloud:} AWS, Azure, Google Cloud Platform
+\item \textbf{DevOps:} Docker, Kubernetes, CI/CD pipelines
+\item \textbf{Databases:} PostgreSQL, MongoDB, Redis, MySQL
+\end{itemize}
+
+% Professional Experience
+\section{Professional Experience}
+
+\subsection{Senior Software Engineer | Tech Company Inc.}
+\textit{January 2022 - Present}
+\begin{itemize}
+\item Led development of microservices architecture serving 1M+ users
+\item Reduced API response time by 40\% through optimization and caching strategies
+\item Mentored 5 junior developers and established coding standards
+\item Implemented CI/CD pipeline reducing deployment time from 2 hours to 15 minutes
+\item Collaborated with cross-functional teams to deliver features on time and within budget
+\end{itemize}
+
+\subsection{Full Stack Developer | Startup Solutions}
+\textit{March 2020 - December 2021}
+\begin{itemize}
+\item Built scalable web applications using React, Node.js, and PostgreSQL
+\item Developed RESTful APIs and GraphQL endpoints for mobile applications
+\item Integrated third-party services including payment gateways and analytics tools
+\item Participated in code reviews and contributed to technical architecture decisions
+\item Achieved 99.9\% uptime through robust error handling and monitoring
+\end{itemize}
+
+\subsection{Junior Developer | Digital Agency}
+\textit{June 2018 - February 2020}
+\begin{itemize}
+\item Created responsive websites for clients across various industries
+\item Optimized website performance achieving 90+ PageSpeed scores
+\item Collaborated with designers to implement pixel-perfect UI/UX designs
+\item Maintained and updated existing client websites and applications
+\end{itemize}
+
+% Education
+\section{Education}
+
+\textbf{Bachelor of Science in Computer Science} \\
+\textit{University Name} \hfill Graduated: 2018 \\
+\textbf{GPA:} 3.8/4.0 \\
+\textbf{Relevant Coursework:} Data Structures, Algorithms, Database Systems, Software Engineering \\
+\textbf{Projects:} Built a real-time chat application, developed a recommendation engine
+
+% Certifications
+\section{Certifications \& Achievements}
+
+\begin{itemize}
+\item \textbf{AWS Certified Solutions Architect} - Associate Level
+\item \textbf{Google Cloud Professional Developer}
+\item \textbf{Microsoft Certified: Azure Developer Associate}
+\item \textbf{Certified Scrum Master (CSM)}
+\item \textbf{Hackathon Winner} - Built AI-powered productivity tool in 24 hours
+\end{itemize}
+
+% Projects
+\section{Notable Projects}
+
+\subsection{E-Commerce Platform} \hfill \href{https://github.com/yourusername/ecommerce}{GitHub}
+\begin{itemize}
+\item \textbf{Full-stack application} built with React, Node.js, and MongoDB
+\item \textbf{Features:} User authentication, payment processing, inventory management
+\item \textbf{Technologies:} Stripe API, JWT, Redux, Material-UI
+\item \textbf{Impact:} 500+ active users, \$50K+ in transactions processed
+\end{itemize}
+
+\subsection{Task Management App} \hfill \href{https://your-task-app.vercel.app}{Live Demo}
+\begin{itemize}
+\item \textbf{Real-time collaborative} task management with WebSocket integration
+\item \textbf{Features:} Drag-and-drop interface, team collaboration, progress tracking
+\item \textbf{Technologies:} Vue.js, Socket.io, Express, PostgreSQL
+\item \textbf{Users:} 2,000+ registered users across 50+ teams
+\end{itemize}
+
+\subsection{Data Analytics Dashboard} \hfill \href{https://github.com/yourusername/analytics}{GitHub}
+\begin{itemize}
+\item \textbf{Interactive dashboard} for business intelligence and reporting
+\item \textbf{Features:} Real-time data visualization, custom reports, export functionality
+\item \textbf{Technologies:} Python, Pandas, Plotly, FastAPI
+\item \textbf{Impact:} Improved decision-making for 100+ business users
+\end{itemize}
+
+% Skills Assessment
+\section{Skills Assessment}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Skill Category} & \textbf{Proficiency} & \textbf{Years of Experience} \\
+\midrule
+Frontend Development & ⭐⭐⭐⭐⭐ & 5+ years \\
+Backend Development & ⭐⭐⭐⭐⭐ & 5+ years \\
+Cloud Architecture & ⭐⭐⭐⭐ & 3+ years \\
+DevOps \& CI/CD & ⭐⭐⭐⭐ & 3+ years \\
+Database Design & ⭐⭐⭐⭐ & 4+ years \\
+API Development & ⭐⭐⭐⭐⭐ & 5+ years \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% Footer
+\vfill
+\begin{center}
+\small\textit{This resume is built with code and automatically generates a PDF version. View the source code to see how it's implemented!}
+\end{center}
+
+\end{document}

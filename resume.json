@@ -1,0 +1,401 @@
+{
+  "basics": {
+    "name": "Your Name",
+    "label": "Software Engineer & Technology Professional",
+    "image": "assets/headshot.jpg",
+    "email": "your.email@example.com",
+    "phone": "(555) 123-4567",
+    "url": "https://yourwebsite.com",
+    "summary": "Experienced software engineer with a passion for creating innovative solutions and driving technological advancement. Proven track record of delivering high-quality software products, leading development teams, and implementing best practices. Strong expertise in modern web technologies, cloud architecture, and agile methodologies.",
+    "location": {
+      "address": "City, State",
+      "postalCode": "12345",
+      "city": "City",
+      "countryCode": "US",
+      "region": "State"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "yourprofile",
+        "url": "https://linkedin.com/in/yourprofile"
+      },
+      {
+        "network": "GitHub",
+        "username": "yourusername",
+        "url": "https://github.com/yourusername"
+      },
+      {
+        "network": "Portfolio",
+        "username": "yourwebsite",
+        "url": "https://yourwebsite.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Tech Company Inc.",
+      "position": "Senior Software Engineer",
+      "url": "https://techcompany.com",
+      "startDate": "2022-01",
+      "endDate": null,
+      "summary": "Led development of microservices architecture serving 1M+ users",
+      "highlights": [
+        "Led development of microservices architecture serving 1M+ users",
+        "Reduced API response time by 40% through optimization and caching strategies",
+        "Mentored 5 junior developers and established coding standards",
+        "Implemented CI/CD pipeline reducing deployment time from 2 hours to 15 minutes",
+        "Collaborated with cross-functional teams to deliver features on time and within budget"
+      ]
+    },
+    {
+      "name": "Startup Solutions",
+      "position": "Full Stack Developer",
+      "url": "https://startupsolutions.com",
+      "startDate": "2020-03",
+      "endDate": "2021-12",
+      "summary": "Built scalable web applications using React, Node.js, and PostgreSQL",
+      "highlights": [
+        "Built scalable web applications using React, Node.js, and PostgreSQL",
+        "Developed RESTful APIs and GraphQL endpoints for mobile applications",
+        "Integrated third-party services including payment gateways and analytics tools",
+        "Participated in code reviews and contributed to technical architecture decisions",
+        "Achieved 99.9% uptime through robust error handling and monitoring"
+      ]
+    },
+    {
+      "name": "Digital Agency",
+      "position": "Junior Developer",
+      "url": "https://digitalagency.com",
+      "startDate": "2018-06",
+      "endDate": "2020-02",
+      "summary": "Created responsive websites for clients across various industries",
+      "highlights": [
+        "Created responsive websites for clients across various industries",
+        "Optimized website performance achieving 90+ PageSpeed scores",
+        "Collaborated with designers to implement pixel-perfect UI/UX designs",
+        "Maintained and updated existing client websites and applications"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Tech Meetup Group",
+      "position": "Organizer",
+      "url": "https://meetup.com/techgroup",
+      "startDate": "2020-01",
+      "endDate": null,
+      "summary": "Host monthly JavaScript and Python meetups",
+      "highlights": [
+        "Organize monthly technical meetups",
+        "Coordinate speakers and presentations",
+        "Build local tech community"
+      ]
+    },
+    {
+      "organization": "Coding Bootcamp",
+      "position": "Mentor",
+      "url": "https://bootcamp.com",
+      "startDate": "2019-06",
+      "endDate": null,
+      "summary": "Volunteer mentor for coding bootcamp students",
+      "highlights": [
+        "Provide one-on-one mentoring",
+        "Review code and provide feedback",
+        "Help students with debugging and problem-solving"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University Name",
+      "url": "https://university.edu",
+      "area": "Computer Science",
+      "studyType": "Bachelor of Science",
+      "startDate": "2014-09",
+      "endDate": "2018-05",
+      "score": "3.8",
+      "courses": [
+        "Data Structures",
+        "Algorithms",
+        "Database Systems",
+        "Software Engineering",
+        "Computer Architecture",
+        "Operating Systems"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "AWS Certified Solutions Architect",
+      "date": "2023-03",
+      "awarder": "Amazon Web Services",
+      "summary": "Associate Level certification demonstrating cloud architecture expertise"
+    },
+    {
+      "title": "Google Cloud Professional Developer",
+      "date": "2022-11",
+      "awarder": "Google Cloud",
+      "summary": "Professional certification for Google Cloud Platform development"
+    },
+    {
+      "title": "Microsoft Certified: Azure Developer Associate",
+      "date": "2022-08",
+      "awarder": "Microsoft",
+      "summary": "Azure development certification for cloud applications"
+    },
+    {
+      "title": "Certified Scrum Master (CSM)",
+      "date": "2021-06",
+      "awarder": "Scrum Alliance",
+      "summary": "Agile project management certification"
+    },
+    {
+      "title": "Hackathon Winner",
+      "date": "2020-10",
+      "awarder": "Tech Conference 2020",
+      "summary": "Built AI-powered productivity tool in 24 hours"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "date": "2023-03",
+      "issuer": "Amazon Web Services",
+      "url": "https://aws.amazon.com/certification/"
+    },
+    {
+      "name": "Google Cloud Professional Developer",
+      "date": "2022-11",
+      "issuer": "Google Cloud",
+      "url": "https://cloud.google.com/certification/"
+    },
+    {
+      "name": "Microsoft Certified: Azure Developer Associate",
+      "date": "2022-08",
+      "issuer": "Microsoft",
+      "url": "https://www.microsoft.com/en-us/learning/"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Modern Web Development Best Practices",
+      "publisher": "Tech Blog",
+      "releaseDate": "2023-01",
+      "url": "https://yourblog.com/web-dev-best-practices",
+      "summary": "Comprehensive guide to modern web development practices and tools"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "level": "Expert",
+      "keywords": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "Java",
+        "SQL",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "name": "Frontend Frameworks",
+      "level": "Expert",
+      "keywords": [
+        "React",
+        "Vue.js",
+        "Angular",
+        "Next.js",
+        "Redux",
+        "Vuex"
+      ]
+    },
+    {
+      "name": "Backend Technologies",
+      "level": "Expert",
+      "keywords": [
+        "Node.js",
+        "Express",
+        "Django",
+        "Spring Boot",
+        "FastAPI",
+        "GraphQL"
+      ]
+    },
+    {
+      "name": "Cloud Platforms",
+      "level": "Advanced",
+      "keywords": [
+        "AWS",
+        "Azure",
+        "Google Cloud Platform",
+        "Docker",
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Databases",
+      "level": "Advanced",
+      "keywords": [
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "MySQL",
+        "Elasticsearch"
+      ]
+    },
+    {
+      "name": "DevOps & Tools",
+      "level": "Advanced",
+      "keywords": [
+        "Git",
+        "GitHub Actions",
+        "CI/CD",
+        "Jenkins",
+        "Prometheus",
+        "Grafana"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native"
+    },
+    {
+      "language": "Spanish",
+      "fluency": "Conversational"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Open Source",
+      "keywords": [
+        "Contributing to React ecosystem",
+        "Vue.js community involvement",
+        "Building developer tools"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "keywords": [
+        "AI applications",
+        "Data science",
+        "Neural networks"
+      ]
+    },
+    {
+      "name": "Community Building",
+      "keywords": [
+        "Tech meetups",
+        "Mentoring",
+        "Conference speaking"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "name": "John Smith",
+      "reference": "Senior Engineering Manager at Tech Company Inc.",
+      "email": "john.smith@techcompany.com"
+    },
+    {
+      "name": "Jane Doe",
+      "reference": "CTO at Startup Solutions",
+      "email": "jane.doe@startupsolutions.com"
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-Commerce Platform",
+      "description": "Full-stack application built with React, Node.js, and MongoDB",
+      "highlights": [
+        "User authentication and authorization",
+        "Payment processing with Stripe API",
+        "Inventory management system",
+        "Admin dashboard for merchants"
+      ],
+      "keywords": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Stripe API",
+        "JWT",
+        "Redux",
+        "Material-UI"
+      ],
+      "startDate": "2022-06",
+      "endDate": "2022-12",
+      "url": "https://github.com/yourusername/ecommerce",
+      "roles": [
+        "Full Stack Developer",
+        "Project Lead"
+      ],
+      "entity": "Personal Project",
+      "type": "Web Application"
+    },
+    {
+      "name": "Task Management App",
+      "description": "Real-time collaborative task management with WebSocket integration",
+      "highlights": [
+        "Real-time collaboration",
+        "Drag-and-drop interface",
+        "Team management features",
+        "Progress tracking and analytics"
+      ],
+      "keywords": [
+        "Vue.js",
+        "Socket.io",
+        "Express",
+        "PostgreSQL",
+        "WebSockets",
+        "Real-time"
+      ],
+      "startDate": "2021-03",
+      "endDate": "2021-09",
+      "url": "https://your-task-app.vercel.app",
+      "roles": [
+        "Frontend Developer",
+        "Backend Developer"
+      ],
+      "entity": "Personal Project",
+      "type": "Web Application"
+    },
+    {
+      "name": "Data Analytics Dashboard",
+      "description": "Interactive dashboard for business intelligence and reporting",
+      "highlights": [
+        "Real-time data visualization",
+        "Custom report generation",
+        "Export functionality",
+        "Interactive charts and graphs"
+      ],
+      "keywords": [
+        "Python",
+        "Pandas",
+        "Plotly",
+        "FastAPI",
+        "Data Visualization",
+        "Business Intelligence"
+      ],
+      "startDate": "2020-09",
+      "endDate": "2021-02",
+      "url": "https://github.com/yourusername/analytics",
+      "roles": [
+        "Data Engineer",
+        "Backend Developer"
+      ],
+      "entity": "Personal Project",
+      "type": "Data Application"
+    }
+  ],
+  "meta": {
+    "theme": "professional",
+    "version": "1.0.0",
+    "lastUpdated": "2024-08-15",
+    "format": "json-resume-schema",
+    "canonical": "https://raw.githubusercontent.com/yourusername/resume-as-code/main/resume.json"
+  }
+}

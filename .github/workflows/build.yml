@@ -1,0 +1,210 @@
+name: Build Resume
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write      # for release uploads
+  pages: write         # for Pages
+  id-token: write      # for Pages OIDC
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Resume JSON
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # If you don't have a package-lock.json, switch to: npm i ajv ajv-formats
+      - name: Install dependencies
+        run: npm i ajv ajv-formats
+
+      - name: Validate resume.json (skip if missing)
+        if: hashFiles('resume.json') != ''
+        run: node scripts/validate-json.mjs
+
+      - name: Upload validation inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-inputs
+          path: |
+            resume.json
+            resume.md
+          if-no-files-found: ignore
+
+  build-pdf:
+    runs-on: ubuntu-latest
+    needs: validate
+    name: Generate PDF Resume
+    steps:
+      - uses: actions/checkout@v4
+
+      # Run pandoc + LaTeX inside container (has xelatex)
+      - name: Generate PDF from Markdown (pandoc/latex)
+        uses: docker://pandoc/latex:2.19
+        with:
+          args: >
+            -f gfm
+            -o /github/workspace/resume.pdf
+            /github/workspace/resume.md
+
+      # Optional JSON -> MD -> PDF, only if resume.json exists
+      - name: Setup Node.js (for JSON->MD)
+        if: hashFiles('resume.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate PDF from JSON (optional)
+        if: hashFiles('resume.json') != ''
+        run: |
+          node -e "
+            const fs = require('fs');
+            const resume = JSON.parse(fs.readFileSync('resume.json','utf8'));
+            const safe = (v, d='') => v ?? d;
+            const basics = safe(resume.basics, {});
+            const work = Array.isArray(resume.work) ? resume.work : [];
+            const skills = Array.isArray(resume.skills) ? resume.skills : [];
+
+            let md = \`# \${safe(basics.name,'')}\n\${safe(basics.label,'')}\n\n\`;
+            if (basics.summary) md += \`## Professional Summary\n\${basics.summary}\n\n\`;
+            md += \`## Work Experience\n\`;
+            work.forEach(j => {
+              md += \`### \${safe(j.position,'')} | \${safe(j.name,'')}\n\`;
+              md += \`*\${safe(j.startDate,'')} - \${safe(j.endDate,'Present')}*\n\`;
+              if (j.summary) md += \`\${j.summary}\n\`;
+              (j.highlights||[]).forEach(h => { md += \`- \${h}\n\`; });
+              md += \`\n\`;
+            });
+            if (skills.length) {
+              md += \`## Skills\n\`;
+              skills.forEach(s => { md += \`### \${safe(s.name,'')}\n\${(s.keywords||[]).join(', ')}\n\n\`; });
+            }
+            fs.writeFileSync('resume-from-json.md', md);
+          "
+
+      - name: Convert JSON markdown to PDF (pandoc/latex)
+        if: hashFiles('resume.json') != ''
+        uses: docker://pandoc/latex:2.19
+        with:
+          args: >
+            -f gfm
+            -o /github/workspace/resume-from-json.pdf
+            /github/workspace/resume-from-json.md
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdfs
+          path: |
+            resume.pdf
+            resume-from-json.pdf
+          if-no-files-found: ignore
+
+      - name: Attach PDF to Release (only on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            resume.pdf
+            resume-from-json.pdf
+
+  build-html:
+    runs-on: ubuntu-latest
+    needs: validate
+    name: Generate HTML Resume
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate HTML from JSON (if present)
+        if: hashFiles('resume.json') != ''
+        run: |
+          node -e "
+            const fs = require('fs');
+            const resume = JSON.parse(fs.readFileSync('resume.json','utf8'));
+            const skills = (resume.skills||[]).map(s => \`<p><strong>\${s.name}</strong>: \${(s.keywords||[]).join(', ')}</p>\`).join('');
+            const work = (resume.work||[]).map(j => \`
+              <section>
+                <h3>\${j.position||''} — \${j.name||''}</h3>
+                <p><em>\${j.startDate||''} – \${j.endDate||'Present'}</em></p>
+                <p>\${j.summary||''}</p>
+                <ul>\${(j.highlights||[]).map(h=>\`<li>\${h}</li>\`).join('')}</ul>
+              </section>\`).join('');
+            const name = (resume.basics&&resume.basics.name) || 'Resume';
+            const label = (resume.basics&&resume.basics.label) || '';
+            const summary = (resume.basics&&resume.basics.summary) || '';
+            const html = \`<!doctype html><html><head>
+              <meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+              <title>\${name}</title>
+              <link rel='stylesheet' href='styles/resume.css'>
+            </head><body>
+              <h1>\${name}</h1><p><strong>\${label}</strong></p><p>\${summary}</p>
+              <h2>Experience</h2>\${work}
+              <h2>Skills</h2>\${skills}
+            </body></html>\`;
+            fs.writeFileSync('resume.html', html);
+          "
+
+      - name: Fallback HTML from Markdown (if no JSON)
+        if: hashFiles('resume.json') == ''
+        run: |
+          echo "<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Resume</title><link rel='stylesheet' href='styles/resume.css'></head><body>" > resume.html
+          echo "<pre>" >> resume.html
+          sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' resume.md >> resume.html
+          echo "</pre></body></html>" >> resume.html
+
+      - name: Include default styles (if none)
+        run: |
+          mkdir -p styles
+          [ -f styles/resume.css ] || echo "body{font-family:system-ui,Arial,sans-serif;margin:2rem;max-width:800px;line-height:1.5}" > styles/resume.css
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build-html, build-pdf]
+    name: Deploy Resume
+    steps:
+      - uses: actions/deploy-pages@v4
+
+  comment-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: [build-html, build-pdf]
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const pagesUrl = `https://${owner}.github.io/${repo}/`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner,
+              repo,
+              body: [
+                '✅ Resume built & deployed.',
+                `- 📄 PDF: check the **Artifacts** tab or latest **Release** (on tags)`,
+                `- 🌐 HTML: ${pagesUrl}`
+              ].join('\n')
+            });

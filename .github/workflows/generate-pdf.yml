@@ -1,0 +1,50 @@
+name: Generate PDF Resume
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'resume.md'
+      - 'styles/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'resume.md'
+      - 'styles/**'
+  workflow_dispatch:
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Pandoc
+      uses: docker://pandoc/core:2.19
+      
+    - name: Generate PDF
+      run: |
+        pandoc resume.md \
+          --pdf-engine=xelatex \
+          --template=styles/resume-template.tex \
+          --css=styles/resume.css \
+          -o resume.pdf \
+          --metadata=title:"Professional Resume" \
+          --metadata=author:"Your Name" \
+          --metadata=date:"$(date +%Y-%m-%d)"
+          
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: resume-pdf
+        path: resume.pdf
+        
+    - name: Commit and push PDF
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add resume.pdf
+        git commit -m "Auto-generate PDF resume [skip ci]" || exit 0
+        git push

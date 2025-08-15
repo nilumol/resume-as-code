@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume - Your Name</title>
+    <link rel="stylesheet" href="../styles/resume.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .interactive-features {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .skill-bar {
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            height: 20px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            background: linear-gradient(90deg, #2563eb, #1e40af);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .project-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #2563eb;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: #1e40af;
+        }
+        
+        .dark-theme {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        .dark-theme section {
+            background-color: #374151;
+            border-color: #4b5563;
+        }
+        
+        .dark-theme .project-card {
+            background-color: #374151;
+            border-color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="interactive-features">
+        <h1><i class="fas fa-rocket"></i> Interactive Resume</h1>
+        <p>Click on sections to expand, hover over projects, and explore your skills visually!</p>
+    </div>
+
+    <div class="contact-info">
+        <h2>Your Name</h2>
+        <p><strong>Software Engineer & Technology Professional</strong></p>
+        <div>
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> your.email@example.com</a>
+            <a href="tel:+15551234567"><i class="fas fa-phone"></i> (555) 123-4567</a>
+            <a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/yourusername"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
+
+    <section onclick="toggleSection(this)">
+        <h2><i class="fas fa-user"></i> Professional Summary</h2>
+        <div class="content">
+            <p>Experienced software engineer with a passion for creating innovative solutions and driving technological advancement. Proven track record of delivering high-quality software products, leading development teams, and implementing best practices.</p>
+        </div>
+    </section>
+
+    <section onclick="toggleSection(this)">
+        <h2><i class="fas fa-code"></i> Core Competencies</h2>
+        <div class="content">
+            <h3>Programming Languages</h3>
+            <div class="skill-item">
+                <span>JavaScript/TypeScript</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <span>Python</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <span>Java</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section onclick="toggleSection(this)">
+        <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+        <div class="content">
+            <div class="experience-item">
+                <div class="experience-title">Senior Software Engineer</div>
+                <div class="experience-company">Tech Company Inc.</div>
+                <div class="experience-date">January 2022 - Present</div>
+                <ul>
+                    <li>Led development of microservices architecture serving 1M+ users</li>
+                    <li>Reduced API response time by 40% through optimization</li>
+                    <li>Mentored 5 junior developers</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Users Served</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+
+    <section onclick="toggleSection(this)">
+        <h2><i class="fas fa-project-diagram"></i> Notable Projects</h2>
+        <div class="content">
+            <div class="project-grid">
+                <div class="project-card" onclick="showProjectDetails('ecommerce')">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p>Full-stack application with React, Node.js, and MongoDB</p>
+                    <a href="https://github.com/yourusername/ecommerce" class="project-link">View on GitHub</a>
+                </div>
+                <div class="project-card" onclick="showProjectDetails('taskapp')">
+                    <h3 class="project-title">Task Management App</h3>
+                    <p>Real-time collaborative task management with WebSocket</p>
+                    <a href="https://your-task-app.vercel.app" class="project-link">Live Demo</a>
+                </div>
+                <div class="project-card" onclick="showProjectDetails('analytics')">
+                    <h3 class="project-title">Data Analytics Dashboard</h3>
+                    <p>Interactive dashboard for business intelligence</p>
+                    <a href="https://github.com/yourusername/analytics" class="project-link">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSection(section) {
+            const content = section.querySelector('.content');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                section.style.borderColor = '#2563eb';
+            } else {
+                content.style.display = 'none';
+                section.style.borderColor = '#e5e7eb';
+            }
+        }
+
+        function showProjectDetails(project) {
+            const details = {
+                ecommerce: {
+                    title: 'E-Commerce Platform',
+                    description: 'A comprehensive e-commerce solution with user authentication, payment processing, and inventory management.',
+                    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe API', 'JWT', 'Redux'],
+                    impact: '500+ active users, $50K+ in transactions processed'
+                },
+                taskapp: {
+                    title: 'Task Management App',
+                    description: 'Real-time collaborative task management application with drag-and-drop interface.',
+                    technologies: ['Vue.js', 'Socket.io', 'Express', 'PostgreSQL'],
+                    impact: '2,000+ registered users across 50+ teams'
+                },
+                analytics: {
+                    title: 'Data Analytics Dashboard',
+                    description: 'Interactive dashboard for business intelligence and reporting with real-time data visualization.',
+                    technologies: ['Python', 'Pandas', 'Plotly', 'FastAPI'],
+                    impact: 'Improved decision-making for 100+ business users'
+                }
+            };
+
+            const project = details[project];
+            alert(`${project.title}\n\n${project.description}\n\nTechnologies: ${project.technologies.join(', ')}\n\nImpact: ${project.impact}`);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        }
+
+        // Animate skill bars on page load
+        window.addEventListener('load', () => {
+            const skillBars = document.querySelectorAll('.skill-fill');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
