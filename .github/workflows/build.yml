@@ -56,13 +56,14 @@ jobs:
         with:
           node-version: '20'
 
-      # Install md-to-pdf globally
-      - name: Install md-to-pdf
-        run: npm install -g md-to-pdf
-
-      # Generate PDF from main resume.md
-      - name: Generate PDF from Markdown
-        run: md-to-pdf resume.md --config-file styles/md2pdf.json
+      # Generate PDF from Markdown (pandoc/latex)
+      - name: Generate PDF from Markdown (pandoc/latex)
+        uses: docker://pandoc/latex:2.19
+        with:
+          args: >
+            -f gfm
+            -o /github/workspace/resume.pdf
+            /github/workspace/resume.md
 
       # Optional JSON -> MD -> PDF, only if resume.json exists
       - name: Generate PDF from JSON (optional)
@@ -93,10 +94,15 @@ jobs:
             fs.writeFileSync('resume-from-json.md', md);
           "
 
-      # Convert JSON markdown to PDF
-      - name: Convert JSON markdown to PDF
+      # Convert JSON markdown to PDF (pandoc/latex)
+      - name: Convert JSON markdown to PDF (pandoc/latex)
         if: hashFiles('resume.json') != ''
-        run: md-to-pdf resume-from-json.md --config-file styles/md2pdf.json
+        uses: docker://pandoc/latex:2.19
+        with:
+          args: >
+            -f gfm
+            -o /github/workspace/resume-from-json.pdf
+            /github/workspace/resume-from-json.md
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
