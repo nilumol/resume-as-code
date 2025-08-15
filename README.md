@@ -1,11 +1,10 @@
-# My Resume (Markdown → PDF)
+# Winston_Nilumol_Resume (Markdown → PDF)
 
 This repo contains my resume in Markdown format, with an automated workflow to generate a PDF version whenever I publish a new release.
 
 ## 📄 View My Resume
-- [Markdown version](./resume.md)
-- [PDF version (site)](https://nilumol.github.io/resume-as-code/resume.pdf)
-- [PDF version (latest release)](https://github.com/nilumol/resume-as-code/releases/latest)
+- [Winston_Nilumol_Resume (markdown version)](./resume.md)
+- [Winston_Nilumol_Resume (PDF version)](https://nilumol.github.io/resume-as-code/resume.pdf)
 
 ## ⚙️ How It Works
 - Resume is stored as `resume.md`
