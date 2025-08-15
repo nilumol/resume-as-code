@@ -4,7 +4,7 @@ This repo contains my resume in Markdown format, with an automated workflow to g
 
 ## 📄 View My Resume
 - [Markdown version](./resume.md)
-- [PDF version (latest release)](https://github.com/<username>/<repo>/releases/latest)
+- [PDF version (latest release)](https://github.com/nilumol/resume-as-code/releases/latest)
 
 ## ⚙️ How It Works
 - Resume is stored as `resume.md`
