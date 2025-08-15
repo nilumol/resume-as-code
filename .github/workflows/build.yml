@@ -51,22 +51,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Run pandoc + LaTeX inside container (has xelatex)
-      - name: Generate PDF from Markdown (pandoc/latex)
-        uses: docker://pandoc/latex:2.19
-        with:
-          args: >
-            -f gfm
-            -o /github/workspace/resume.pdf
-            /github/workspace/resume.md
-
-      # Optional JSON -> MD -> PDF, only if resume.json exists
-      - name: Setup Node.js (for JSON->MD)
-        if: hashFiles('resume.json') != ''
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
+      # Install md-to-pdf globally
+      - name: Install md-to-pdf
+        run: npm install -g md-to-pdf
+
+      # Generate PDF from main resume.md
+      - name: Generate PDF from Markdown
+        run: md-to-pdf resume.md --output-file resume.pdf --config-file styles/md2pdf.json
+
+      # Optional JSON -> MD -> PDF, only if resume.json exists
       - name: Generate PDF from JSON (optional)
         if: hashFiles('resume.json') != ''
         run: |
@@ -95,14 +93,10 @@ jobs:
             fs.writeFileSync('resume-from-json.md', md);
           "
 
-      - name: Convert JSON markdown to PDF (pandoc/latex)
+      # Convert JSON markdown to PDF
+      - name: Convert JSON markdown to PDF
         if: hashFiles('resume.json') != ''
-        uses: docker://pandoc/latex:2.19
-        with:
-          args: >
-            -f gfm
-            -o /github/workspace/resume-from-json.pdf
-            /github/workspace/resume-from-json.md
+        run: md-to-pdf resume-from-json.md --output-file resume-from-json.pdf --config-file styles/md2pdf.json
 
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
@@ -139,7 +133,7 @@ jobs:
           node -e "
             const fs = require('fs');
             const resume = JSON.parse(fs.readFileSync('resume.json','utf8'));
-            const skills = (resume.skills||[]).map(s => \`<p><strong>\${s.name}</strong>: \${(s.keywords||[]).join(', ')}</p>\`).join('');
+            const skills = (resume.skills||[]).map(s => \`<p><strong>\${s.name||''}</strong>: \${(s.keywords||[]).join(', ')}</p>\`).join('');
             const work = (resume.work||[]).map(j => \`
               <section>
                 <h3>\${j.position||''} — \${j.name||''}</h3>
@@ -197,14 +191,14 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const pagesUrl = `https://${owner}.github.io/${repo}/`;
+            const pagesUrl = \`https://\${owner}.github.io/\${repo}/\`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner,
               repo,
               body: [
                 '✅ Resume built & deployed.',
-                `- 📄 PDF: check the **Artifacts** tab or latest **Release** (on tags)`,
-                `- 🌐 HTML: ${pagesUrl}`
-              ].join('\n')
+                \`- 📄 PDF: check the **Artifacts** tab or latest **Release** (on tags)\`,
+                \`- 🌐 HTML: \${pagesUrl}\`
+              ].join('\\n')
             });
